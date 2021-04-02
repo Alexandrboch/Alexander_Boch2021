@@ -14,24 +14,25 @@ int main()
     ofstream Fout;
     Fin.open("input.txt");
     Fout.open("outputpuz.txt");
-    long i = 1000;
+    long i = 10000;
     while(i!=110000)
     {
-        long mas[i];
+        long* mas;
+        mas = new long[i];
         for(long j = 0; j<i; j++)
         {
-            mas[j] = rand();
+            *(mas+j) = rand();
         }
         auto start = std::chrono::high_resolution_clock::now();
         for(long j = 0; j<i; j++)
         {
             for(long m = 0; m<i-1-j; m++)
             {
-                if(mas[m]>mas[m+1])
+                if(*(mas+m)>*(mas+m+1))
                 {
-                    long el = mas[m+1];
-                    mas[m+1] = mas [m];
-                    mas[m] = el;
+                    long el = *(mas+m+1);
+                    *(mas+m+1) = *(mas+m);
+                    *(mas+m) = el;
                 }
             }
         }
@@ -46,7 +47,7 @@ int main()
     Fout.close();
     Fout.open("outputvb.txt");
 
-    i = 1000;
+    i = 10000;
     while(i!=110000)
     {
         long mas[i];
@@ -89,7 +90,7 @@ int main()
     Fout.close();
     Fout.open("outputvs.txt");
 
-    i = 1000;
+    i = 10000;
     while(i!=110000)
     {
         long mas[i];
