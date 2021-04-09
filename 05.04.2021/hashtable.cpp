@@ -132,6 +132,38 @@ struct HashMap
             }
         }
 
+        for(int i = 0; i<size; i++)
+        {
+            Node * a = table+i;
+            while(a != NULL)
+            {
+                Node * b = a;
+                a = a->next;
+                delete b;
+            }
+        }
+        size = size*2;
+        Node * table = new Node[size];
+        for(int i = 0; i<size; i++)
+        {
+            table[i].key = new_table[i].key;
+            table[i].value = new_table[i].value;
+            table[i].t = new_table[i].t;
+            table[i].next = new_table[i].next;
+
+        }
+
+        for(int i = 0; i<size; i++)
+        {
+            Node * a = new_table+i;
+            while(a != NULL)
+            {
+                Node * b = a;
+                a = a->next;
+                delete b;
+            }
+        }
+
     }
 
     void pop(int key)
