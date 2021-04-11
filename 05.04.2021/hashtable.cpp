@@ -35,6 +35,22 @@ struct HashMap
         key_not = size-1;
     }
 
+    ~HashMap()
+    {
+        for(int i = 0; i<size; i++)
+        {
+            Node * a = table+i;
+            while(a != NULL)
+            {
+                Node * b = a;
+                a = a->next;
+                delete b;
+            }
+        }
+
+        delete [] table;
+    }
+
     void add(int key, int value)
     {
         if(n_elements<=size/2)
